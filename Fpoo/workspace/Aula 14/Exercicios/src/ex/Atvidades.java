@@ -30,6 +30,7 @@ public class Atvidades {
 				xerox();
 				break;
 			case 6:
+				parímpa();
 				break;
 			case 7:
 				System.out.println("Bye Bye:)");
@@ -86,7 +87,7 @@ public class Atvidades {
 		int la = 10;
 		for (int i = 0; i < 10; i++) {
 
-			System.out.print("Digite um inteiro Valor ate 10: ");
+			System.out.print("Digite um inteiro Valor até	 10: ");
 			num1[i] = entrada.nextInt();
 
 		}
@@ -124,20 +125,37 @@ public class Atvidades {
 
 		System.out.println("Digite o valor do seu xerox:");
 		val = entrada.nextDouble();
-		
-		  
-            for(int i = 1; i <= 200; i++) {
-				acum = (double) i * val;
 
-				System.out.print(i + " = " + acum+"\t");
-				
-				if(i % 10 == 0) {
-					System.out.println();
-				}
-   } 
-			
+		for (int i = 1; i <= 200; i++) {
+			acum = (double) i * val;
+
+			System.out.printf("%d = %.2f\t", i, acum);
+
+			if (i % 10 == 0) {
+				System.out.println();
+			}
+		}
+
 		System.out.println();
 	}
 
-	// multiplicar pelo valor que ele colocou...
+	public static void parímpa() {
+		int usu, usu2;
+		int somapr = 0, somaimpar = 0;
+		System.out.println("Digite um número:");
+		usu = entrada.nextInt();
+		System.out.println("Digite outro número:");
+		usu2 = entrada.nextInt();
+		for (int i = usu; i < usu2; i++) {
+			if (i % 2 == 0) {
+				somapr+= i;
+
+			}else {
+				somaimpar +=i;
+				
+			}
+		}
+		System.out.println("Sua soma é:"+somapr);
+		System.out.println("Sua soma é:"+somaimpar);
+	}
 }
