@@ -26,6 +26,7 @@ public static Scanner entrada = new Scanner(System.in);
 				fatorial();
 				break;
 			case 5:
+				valorXer();
 				break;
 			case 6:
 				break;
@@ -116,4 +117,20 @@ public static Scanner entrada = new Scanner(System.in);
 		
 		System.out.println("O seu número digitado em fatorial é:"+acum);
 	}
-}
+	
+	public static void valorXer(){
+		double val1,acum = 0;
+		
+		  System.out.println("Digite o valor do Xerox:");
+  val1 = entrada.nextDouble();
+ int[]number = new int[200];
+ for(i = 0; i <= number; i++) {
+	 acum = (double) i*val1;
+	
+ }
+ System.out.println(acum"\t");
+	
+	
+
+
+
