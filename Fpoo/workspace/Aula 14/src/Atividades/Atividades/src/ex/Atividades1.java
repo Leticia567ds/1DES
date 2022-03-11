@@ -1,7 +1,7 @@
 package ex;
 
 import java.util.Scanner;
-
+import java.util.Arrays;
 public class Atividades1 {
 
 	public static Scanner entrada = new Scanner(System.in);
@@ -10,7 +10,7 @@ public class Atividades1 {
 		int menu = 0;
 		while (menu != 7) {
 			System.out.println(
-					"1.Vetor Crescente e Decrescente\n 2.Vetor Decrescente\n 3.Multiplicação de elementos\n 4.Name\n 5.Resolução\n 6.\n 7.\n 8.Sair\n");
+					"1.Vetor Crescente e Decrescente\n 2.Vetor Decrescente\n 3.Multiplicação de elementos\n 4.Name\n 5.Resolução\n 6.Crescente-Par e Descrescente-Imp\n 7.Iguais or No\n 8.Sair\n");
 			menu = entrada.nextInt();
 
 			switch (menu) {
@@ -30,8 +30,10 @@ public class Atividades1 {
 				Vetor20();
 				break;
 			case 6:
+				ex6();
 				break;
 			case 7:
+				iguaisorNo();
 				break;
 			case 8:
 				System.out.println("Bye Bye");
@@ -133,52 +135,146 @@ public class Atividades1 {
 		System.out.println("Digite o nome que você quer buscar:");
 		String name = entrada.next();
 		boolean achou = false;
-		
+
 		for (int i = 0; i < C.length; i++) {
 			if (C[i].equals(name)) {
 				System.out.println("Achei!");
 				achou = true;
 			}
-	}
-		if(!achou) {
+		}
+		if (!achou) {
 			System.out.println("Não achei!");
 		}
 		System.out.println("\n");
- }
+	}
+
 	public static void Vetor20() {
-		int[]v1 = new int[20];
-		int[]v2 = new int[20];	
-		int[]v3 = new int[20];	
-		int[]v4 = new int[20];	
-		int[]v5 = new int[20];	
+		int[] v1 = new int[20];
+		int[] v2 = new int[20];
+		int[] v3 = new int[20];
+		int[] v4 = new int[20];
+		int[] v5 = new int[20];
 		for (int i = 0; i < v1.length; i++) {
 			System.out.println("Digite um valor: ");
 			v1[i] = entrada.nextInt();
 		}
-		
-			System.out.println("\nVetor 2: ");
+
+		System.out.println("\nVetor 2: ");
 		for (int i = 0; i < v2.length; i++) {
 			System.out.println("Digite outro valor:*.* ");
 			v2[i] = entrada.nextInt();
 		}
-		 
-		for(int i = 0;i <1;i++) {
+
+		for (int i = 0; i < 1; i++) {
 			v3[i] = v1[i] - v2[i];
-		 System.out.println("Subtração é = "+v3[i]);
+			System.out.println("Subtração é = " + v3[i]);
 		}
-		 
-		for(int i = 0; i < 1; i++) {
+
+		for (int i = 0; i < 1; i++) {
 			v4[i] = v1[i] + v2[i];
-			 System.out.println("A soma é = "+v4[i]);
+			System.out.println("A soma é = " + v4[i]);
 		}
-		 
-		for(int i = 0; i < 1; i++) {
+
+		for (int i = 0; i < 1; i++) {
 			v5[i] = v1[i] * v2[i];
-			 System.out.println("A multiplicação  é = "+v5[i]);
+			System.out.println("A multiplicação  é = " + v5[i]);
 		}
 		System.out.println("\n");
-		
-		
-		
 	}
+
+	public static void ex6() {
+		int IMP = 0, PAR = 0;
+		int[] numb = new int[10];
+		for (int i = 0; i < numb.length; i++) {
+			System.out.println("Digite um número inteiro:");
+			numb[i] = entrada.nextInt();
+			if (numb[i] % 2 == 0) {
+				PAR++;
+
+			} else {
+				IMP++;
+			}
+		}
+		int[] imp = new int[IMP];
+		int[] par = new int[PAR];
+
+		for (int i = 0; i < par.length; i++) {
+			par[i] = 1;
+
+		}
+
+		for (int i = 0; i < imp.length; i++) {
+
+			imp[i] = 0;
+
+		}
+		for (int i = 0; i < numb.length; i++) {
+			if (numb[i] % 2 == 0) {
+				for (int l = 0; l < par.length; l++) {
+					if (par[l] == 1) {
+						par[l] = numb[i];
+						break;
+					}
+				}
+			}else {
+				for (int x = 0; x < imp.length; x++) {
+					if (imp[x] == 0) {
+						imp[x] = numb[i];
+						break;
+					}			
+		}
+	}
+}
+	
+			Arrays.sort(par);
+			Arrays.sort(imp);
+			
+			System.out.println("--Pares crescente--");
+			
+			for (int i = 0; i < par.length; i++) {
+				System.out.print(par[i] + " ");
+			}
+			
+			System.out.println("\n--Ímpares decrescente--");
+			
+			for (int i = imp.length - 1; i >= 0; i--) {
+				System.out.print(imp[i] + " ");
+			}
+			
+			
+			System.out.println(" ");
+			
+	}
+	 
+	public static void iguaisorNo() {
+		System.out.println("Digite o Tamanho dos Vetores");
+		int N = entrada.nextInt();
+		
+		int v1[] = new int[N];
+		int v2[] = new int[N];
+		boolean iguais = false;
+		
+		for(int i = 0; i < N; i++) {
+			System.out.println("Digite um Valor Para o Vetor [1]: ");
+			v1[i] = entrada.nextInt();
+			
+		}
+		for(int i = 0; i < N; i++) {
+			System.out.println("Digite um Valor Paro o Vetor [2]: ");
+			v2[i] = entrada.nextInt();
+			
+			if(v1[i] == v2[i]) {
+				iguais = true;
+			}else {
+				iguais = false;
+			}
+			
+		}
+		if(iguais) {
+			System.out.println("Iguais");
+		}else {
+			System.out.println("Diferentes");
+		}
+	}
+	
 }
