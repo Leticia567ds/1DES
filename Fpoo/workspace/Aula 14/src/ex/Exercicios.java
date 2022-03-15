@@ -117,6 +117,7 @@ public static Scanner entrada = new Scanner(System.in);
 		
 		System.out.println("O seu número digitado em fatorial é:"+acum);
 	}
+<<<<<<< HEAD
 	
 	public static void valorXer(){
 		double val1,acum = 0;
@@ -134,3 +135,10 @@ public static Scanner entrada = new Scanner(System.in);
 
 
 
+=======
+	public static void xerox() {
+		System.out.println("Digite quanto xero queira fazer:");
+		//multiplicar pelo valor que ele colocou...
+	}
+}
+>>>>>>> a3e24398a969300be58f10355e6834cf73ddc98c
