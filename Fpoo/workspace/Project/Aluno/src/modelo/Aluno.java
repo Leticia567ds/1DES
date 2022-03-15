@@ -4,12 +4,14 @@ import java.util.Date;
 import modelo.Nota;
 
 public class Aluno {
-
+         
 	public int ra;
 	public String nome;
 	public Date Nascimento;
 	public Nota notas[] = new Nota[4];
-	 
+	 public Aluno() {
+		 
+	 }
 	public Aluno(int ra, String nome, Date Nascimento) {
 		this.ra = ra;
 		this.nome = nome;

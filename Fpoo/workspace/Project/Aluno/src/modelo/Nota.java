@@ -5,7 +5,9 @@ public class Nota {
 	public String componente;
 	public float notas[] = new float[3];
 	 
-
+public Nota() {
+	
+}
 	public Nota(String componente, float[] notas) {
 		this.componente = componente;
 		this.notas = notas;
