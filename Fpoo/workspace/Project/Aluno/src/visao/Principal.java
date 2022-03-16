@@ -1,18 +1,21 @@
 package visao;
 
-import modelo.Aluno;
-import modelo.Nota;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+
+import modelo.Aluno;
+import modelo.Nota;
 
 public class Principal {
 	static Scanner entrada = new Scanner(System.in);
 	static Aluno[] alunos = new Aluno[10];
+	static Nota[] notas = new Nota[4];
 	static int qtdCadastrada = 0;
-	static int qtd = 0;
+	
+	 
+
 	public static void main(String[] args) throws ParseException {
 		int menu = 0;
 		while (menu != 7) {
@@ -39,8 +42,10 @@ public class Principal {
 				listarTodosAlunos();
 				break;
 			case 4:
+				listarTodasNotas();
 				break;
 			case 5:
+				obterDadosAlunoEs();
 				break;
 			case 6:
 				break;
@@ -81,42 +86,93 @@ public class Principal {
 	}
 
 	public static void cadastrarNotas() {
-		System.out.println("Digite o RA do aluno para as notas serem cadastradas:");
+           int qtd = 0;
+		 
+	 System.out.println("Digite o RA do aluno para as notas serem cadastradas:");
 		int ra = entrada.nextInt();
-		float[] nota = new float[3];
+		
+		 
+				
 		for (int i = 0; i < alunos.length; i++) {
 			if (alunos[i] != null) {
 				if (alunos[i].ra == ra) {
 					Nota[] notas = alunos[i].notas;
-
-					for (int j = 0; j < 4; j++) {
-						// quando não encontrar
-						if (notas[j] == null) {
-							 
-							System.out.println("Digite o nome da matéria para inserir as notas");
-							String componente = entrada.next();
-							
-							for (int l = 0; l < 3; l++) {
-								System.out.println("Digite a " + (l + 1) + "ª Nota:");
-								nota[l] = entrada.nextFloat();
+					System.out.println("ALUNO: " + alunos[i].nome);
+					do {
+						System.out.println("Quantas  matérias  deseja cadastrar as notas? (max: 4)");
+						qtd = entrada.nextInt();
+						if(qtd > 4) {
+							System.out.println("O máximo é até 4");
+						}else {
+							for (int il = 0; il < qtd; il++) {
+								for (int j = 0; j < 4; j++) {
+									if (notas[j] == null) {
+										System.out.println("Digite á matéria ");
+										System.out.println("Digite a Nota 1");
+										System.out.println("Digite a Nota 2");
+										System.out.println("Digite a Nota 3");
+										String componente = entrada.next();
+										
+										float[] nota = new float[3];
+										
+										for (int k = 0; k < nota.length; k++) {
+											nota[k] = entrada.nextFloat();
+										}
+										alunos[i].notas[j] = new Nota(componente, nota);
+										
+										break;
+									 }
+								}
 							}
-							notas[j] = new Nota(componente, nota);
-
-							alunos[i].notas = notas;
-							break;
 						}
-						if (j == 3) {
-							System.out.println("Limite de componentes atingido para " + alunos[i].nome + ". (4/4)");
-						}
-					}
-				}
+						
+           } while(qtd > 4);
+					
+				}else if(i == 9) {
+						System.out.println("RA não encontrado");
+						
+						break;
 			}
+		  }
 		}
 	}
-
 	private static void listarTodosAlunos() {
 		for (int i = 0; i < qtdCadastrada; i++) {
+			System.out.println("Nome"+"\t"+ "Ra"+"\t"+"Data de nascimento"+"\t"+"Idade"+"\t");  
 			System.out.println(alunos[i].tabulaString());
+			
 		}
+	}
+	private static void listarTodasNotas() {
+		for (int i = 0; i < alunos.length; i++) {
+			if (alunos[i] != null) {
+				
+				System.out.println(alunos[i].nome);
+				
+				System.out.println("\tComp.\tNota 1\tNota 2\tNota 3\tMédia\n");
+				for (int  l = 0;  l < alunos[i].notas.length;  l++) {
+					if (alunos[i].notas[ l] != null) {
+						System.out.print("\t" + alunos[i].notas[ l].componente);
+						for (int j2 = 0; j2 < alunos[i].notas[ l].notas.length; j2++) {
+							System.out.print("\t" + alunos[i].notas[ l].notas[j2]);
+						}
+						if(alunos[i].notas[ l].obterMedia() <= 50) {
+							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
+							System.out.println("\n");
+						} else {
+							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
+							System.out.println("\n");
+						}
+					}
+					
+				}
+				System.out.println(alunos[i].obterConceito());
+				System.out.println("\n");
+			}
+	   }
+		
+	}
+	public static void obterDadosAlunoEs() {
+		
 	}
 }

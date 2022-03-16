@@ -22,6 +22,6 @@ public Nota() {
 		return soma / notas.length;
 	}
 	public String paraString() {
-		return componente + "\t" + notas;
+		return componente+" "+"   "+notas+"   "+"  "+obterMedia();
 	}
 }

@@ -1,6 +1,7 @@
 package modelo;
 import java.util.Date;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import modelo.Nota;
 
 public class Aluno {
@@ -55,6 +56,8 @@ public class Aluno {
 		}
 	}
 	public String tabulaString() {
-		return ra + "\t" + nome + "\t" + Nascimento ;
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		return nome +"     "+" "+ra+" "+"     "+ df.format(Nascimento)+"          "+"    "+calcIdade();
 	}
+	
 }
