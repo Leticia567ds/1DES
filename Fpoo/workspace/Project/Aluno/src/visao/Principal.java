@@ -13,8 +13,6 @@ public class Principal {
 	static Aluno[] alunos = new Aluno[10];
 	static Nota[] notas = new Nota[4];
 	static int qtdCadastrada = 0;
-	
-	 
 
 	public static void main(String[] args) throws ParseException {
 		int menu = 0;
@@ -45,11 +43,37 @@ public class Principal {
 				listarTodasNotas();
 				break;
 			case 5:
-				obterDadosAlunoEs();
-				break;
+
+				int aluno = 0;
+
+				while (aluno != 1 && aluno != 2) {
+					System.out.println("Deseja buscar por\n Obs:(apertar 1 e 2)\n 1.Ra\n 2.Nome ");
+					aluno = entrada.nextInt();
+
+					switch (aluno) {
+					case 1:
+
+						System.out.println("Digite o RA do aluno:");
+						int ra = entrada.nextInt();
+						obterDadosAluno(ra);
+
+						break;
+					case 2:
+						System.out.println("Digite o nome do aluno:");
+						String nome = entrada.next();
+						obterDadosAluno(nome);
+						break;
+					default:
+						System.out.println("Opção inválida---");
+						break;
+
+					}
+				}
 			case 6:
+				 aprovados();
 				break;
 			case 7:
+				reprovados();
 				break;
 			case 8:
 				System.out.println("Obrigado por confiar em nosso trabalho");
@@ -59,6 +83,7 @@ public class Principal {
 				break;
 			}
 		}
+
 	}
 
 	public static void cadastrarAluno() throws ParseException {
@@ -67,8 +92,6 @@ public class Principal {
 			if (sucesso) {
 				System.out.println("Aluno  cadastrado com sucesso ");
 				qtdCadastrada++;
-			} else {
-				System.out.println("Erro ao cadastrar o aluno.");
 			}
 		} else {
 			System.out.println("Limite máximo de alunos atingido");
@@ -86,24 +109,22 @@ public class Principal {
 	}
 
 	public static void cadastrarNotas() {
-           int qtd = 0;
-		 
-	 System.out.println("Digite o RA do aluno para as notas serem cadastradas:");
+		int qtd = 0;
+
+		System.out.println("Digite o RA do aluno para as notas serem cadastradas:");
 		int ra = entrada.nextInt();
-		
-		 
-				
+
 		for (int i = 0; i < alunos.length; i++) {
 			if (alunos[i] != null) {
 				if (alunos[i].ra == ra) {
 					Nota[] notas = alunos[i].notas;
 					System.out.println("ALUNO: " + alunos[i].nome);
 					do {
-						System.out.println("Quantas  matérias  deseja cadastrar as notas? (max: 4)");
+						System.out.println("Quantas matérias  deseja cadastrar as notas? (max: 4)");
 						qtd = entrada.nextInt();
-						if(qtd > 4) {
+						if (qtd > 4) {
 							System.out.println("O máximo é até 4");
-						}else {
+						} else if (qtd <= 4) {
 							for (int il = 0; il < qtd; il++) {
 								for (int j = 0; j < 4; j++) {
 									if (notas[j] == null) {
@@ -112,67 +133,157 @@ public class Principal {
 										System.out.println("Digite a Nota 2");
 										System.out.println("Digite a Nota 3");
 										String componente = entrada.next();
-										
+
 										float[] nota = new float[3];
-										
+
 										for (int k = 0; k < nota.length; k++) {
 											nota[k] = entrada.nextFloat();
 										}
 										alunos[i].notas[j] = new Nota(componente, nota);
-										
+
 										break;
-									 }
+									}
 								}
 							}
 						}
-						
-           } while(qtd > 4);
-					
-				}else if(i == 9) {
-						System.out.println("RA não encontrado");
-						
-						break;
+
+					} while (qtd > 4);
+
+				} else if (i == 9) {
+					System.out.println("RA não encontrado");
+
+					break;
+				}
 			}
-		  }
 		}
 	}
+
 	private static void listarTodosAlunos() {
+		System.out.println("Nome" + "\t" + "Ra" + "\t" + "Data de nascimento" + "\t" + "Idade" + "\t");
 		for (int i = 0; i < qtdCadastrada; i++) {
-			System.out.println("Nome"+"\t"+ "Ra"+"\t"+"Data de nascimento"+"\t"+"Idade"+"\t");  
-			System.out.println(alunos[i].tabulaString());
 			
+			System.out.println(alunos[i].tabulaString());
+
 		}
 	}
+
 	private static void listarTodasNotas() {
 		for (int i = 0; i < alunos.length; i++) {
 			if (alunos[i] != null) {
-				
+
 				System.out.println(alunos[i].nome);
-				
+
 				System.out.println("\tComp.\tNota 1\tNota 2\tNota 3\tMédia\n");
-				for (int  l = 0;  l < alunos[i].notas.length;  l++) {
-					if (alunos[i].notas[ l] != null) {
-						System.out.print("\t" + alunos[i].notas[ l].componente);
-						for (int j2 = 0; j2 < alunos[i].notas[ l].notas.length; j2++) {
-							System.out.print("\t" + alunos[i].notas[ l].notas[j2]);
+				for (int l = 0; l < alunos[i].notas.length; l++) {
+					if (alunos[i].notas[l] != null) {
+						System.out.print("\t" + alunos[i].notas[l].componente);
+						for (int j2 = 0; j2 < alunos[i].notas[l].notas.length; j2++) {
+							System.out.print("\t" + alunos[i].notas[l].notas[j2]);
 						}
-						if(alunos[i].notas[ l].obterMedia() <= 50) {
-							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
+						if (alunos[i].notas[l].obterMedia() <= 50) {
+							System.out.printf("\t|%.2f|", alunos[i].notas[l].obterMedia());
 							System.out.println("\n");
 						} else {
 							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
 							System.out.println("\n");
 						}
 					}
-					
+
 				}
 				System.out.println(alunos[i].obterConceito());
 				System.out.println("\n");
 			}
-	   }
-		
+		}
+
 	}
-	public static void obterDadosAlunoEs() {
-		
+
+	public static void obterDadosAluno(int ra) throws ParseException {
+
+		for (int i = 0; i < alunos.length; i++) {
+			if (alunos[i].nome != null && alunos[i].ra == ra) {
+				System.out.println("Aluno " + alunos[i].nome);
+				System.out.println("Idade: " + alunos[i].calcIdade());
+				System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(alunos[i].Nascimento));
+				System.out.println(alunos[i].obterConceito());
+			} else {
+				System.out.println("aluno não encontrado");
+			}
+		}
+
 	}
-}
+
+	public static void obterDadosAluno(String nome) {
+		boolean n = false;
+		for (int i = 0; i < alunos.length; i++) {
+			if (alunos[i] != null && alunos[i].nome.equals(nome)) {
+				System.out.println("Aluno " + alunos[i].nome);
+				System.out.println("Idade: " + alunos[i].calcIdade());
+				System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(alunos[i].Nascimento));
+				System.out.println(alunos[i].obterConceito());
+				n = true;
+				break;
+			}
+		}
+		if (n == false) {
+			System.out.println("Não encontrado");
+		}
+	}
+
+	public static void aprovados() {
+		for (int i = 0; i < alunos.length; i++) {
+			if (alunos[i] != null && alunos[i].obterConceito().equals("Aluno(a) " + alunos[i].nome + " foi aprovados")) {
+				
+				System.out.println(alunos[i].nome);
+				
+				System.out.println("\tComp.\tNota 1\tNota 2\tNota 3\tMédia\n");
+				for (int l = 0; l < alunos[i].notas.length; l++) {
+					if (alunos[i].notas[l] != null) {
+						System.out.print("\t" + alunos[i].notas[l].componente);
+						for (int j2 = 0; j2 < alunos[i].notas[l].notas.length; j2++) {
+							System.out.print("\t" + alunos[i].notas[l].notas[j2]);
+						}
+						if (alunos[i].notas[l].obterMedia() > 50) {
+							System.out.printf("\t|%.2f|", alunos[i].notas[l].obterMedia());
+							System.out.println("\n");
+						} else {
+							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
+							System.out.println("\n");
+						}
+					}
+
+				}
+				System.out.println(alunos[i].obterConceito());
+				System.out.println("\n");
+			}
+		}
+
+	}
+	public static void reprovados() {
+		for (int i = 0; i < alunos.length; i++) {
+			if (alunos[i] != null && alunos[i].obterConceito().equals("Aluno(a) " + alunos[i].nome + " foi reprovado")) {
+				
+				System.out.println(alunos[i].nome);
+				
+				System.out.println("\tComp.\tNota 1\tNota 2\tNota 3\tMédia\n");
+				for (int l = 0; l < alunos[i].notas.length; l++) {
+					if (alunos[i].notas[l] != null) {
+						System.out.print("\t" + alunos[i].notas[l].componente);
+						for (int j2 = 0; j2 < alunos[i].notas[l].notas.length; j2++) {
+							System.out.print("\t" + alunos[i].notas[l].notas[j2]);
+						}
+						if (alunos[i].notas[l].obterMedia() < 50) {
+							System.out.printf("\t%.2f", alunos[i].notas[l].obterMedia());
+							System.out.println("\n");
+						}  
+					}
+
+				}
+				}
+				System.out.println(alunos[i].obterConceito());
+				System.out.println("\n");
+			}
+		}
+
+	}
+
+

@@ -43,11 +43,13 @@ public class Aluno {
 	public String obterConceito() {
 		boolean aprovado = true;
 		for (int i = 0; i < notas.length; i++) {
-
-			if (notas[i].obterMedia() <= 50) {
+			if (notas[i] != null) {
+				if (notas[i].obterMedia() <= 50) {
 				aprovado = false;
 				break;
 			}
+			}
+			
 		}
 		if (aprovado) {
 			return "Aluno(a) " + nome + " foi APROVADO!";
