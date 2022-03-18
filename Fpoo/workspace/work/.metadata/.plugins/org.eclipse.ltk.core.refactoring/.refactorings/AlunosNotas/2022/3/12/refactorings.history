@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;modelo.Nota&apos; to &apos;componentes&apos;&#x0D;&#x0A;- Original project: &apos;AlunosNotas&apos;&#x0D;&#x0A;- Original element: &apos;modelo.Nota&apos;&#x0D;&#x0A;- Renamed element: &apos;modelo.componentes&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Nota&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;modelo{Nota.java[Nota" matchStrategy="1" name="componentes" qualified="false" references="true" similarDeclarations="false" stamp="1647608273717" textual="false" version="1.0"/>
+</session>
