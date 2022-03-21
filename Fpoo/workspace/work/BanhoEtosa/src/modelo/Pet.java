@@ -25,6 +25,6 @@ public class Pet {
 	
 	//toString (Concatena todos os atributos em uma só String)
 	public String paraString() {
-		return idPet + "\t" + tipoPet + "\t" + nomePet + "\t" + nomeDono + "\t" + String.format("%.1f", peso);
+		return idPet +  "\t"  + tipoPet +  "\t"  + nomePet  + "\t"  + nomeDono +  "\t"  +String.format("%.1f", peso);
 	}
 }

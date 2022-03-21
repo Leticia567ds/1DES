@@ -5,12 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-
+import modelo.Preenchimento;
 import modelo.Pet;
+import modelo.Preenchimento;
 import modelo.Servico;
 
 public class Menu {
-
+    public static Scanner entrada = new Scanner(System.in);
+	private static final Object[] Preenchimento = null;
 	// Atributos uteis de entrada e saída
 	private static Scanner read = new Scanner(System.in);
 	private static int opcao = 0;
@@ -26,47 +28,67 @@ public class Menu {
 
 	// Método principal "Menú" ou "Cama"
 	public static void main(String[] args) throws IOException, ParseException {
-		boolean sucesso = false;
-		System.out.println("[ [ Gestão de Serviços de Banho e Tosa ] ]");
-		while (opcao != 5) {
-			System.out.print("Opção: ");
+	  
+		while (opcao != 2) {
+			System.out.print("1.Preenchimento normal\n2.Preenchimento rápido");
+			System.out.println("\n");
+			System.out.println("Escolha uma opção: a 1 ou a 2");
 			opcao = menu(funcionalidades);
 			switch (opcao) {
 			case 1:
-				sucesso = cadastrarAnimal();
-				if (sucesso) {
-					System.out.println("Animal/Pet cadastrado com sucesso.");
-					contPets++;
-				} else
-					System.out.println("Erro ao cadastrar animal.");
-				break;
+				boolean sucesso = false;
+				System.out.println("[ [ Gestão de Serviços de Banho e Tosa ] ]");
+				while (opcao != 5) {
+					System.out.print("Opção: ");
+					opcao = menu(funcionalidades);
+					switch (opcao) {
+					case 1:
+						sucesso = cadastrarAnimal();
+						if (sucesso) {
+							System.out.println("Animal/Pet cadastrado com sucesso.");
+							contPets++;
+						} else
+							System.out.println("Erro ao cadastrar animal.");
+						break;
+					case 2:
+						sucesso = cadastrarServico();
+						if (sucesso) {
+							System.out.println("Serviço registrado com sucesso.");
+							contServicos++;
+						} else
+							System.out.println("Erro ao registrar serviço.");
+						break;
+					case 3:
+						listarPets();
+						break;
+					case 4:
+						listarServicos();
+						break;
+					case 5:
+						System.out.println("Até logo e volte sempre.");
+						break;
+					default:
+						System.out.println("Opção inválida");
+						break;
+					}
+				}
+				 
+		
 			case 2:
-				sucesso = cadastrarServico();
-				if (sucesso) {
-					System.out.println("Serviço registrado com sucesso.");
-					contServicos++;
-				} else
-					System.out.println("Erro ao registrar serviço.");
-				break;
-			case 3:
-				listarPets();
-				break;
-			case 4:
-				listarServicos();
-				break;
-			case 5:
-				System.out.println("Até logo e volte sempre.");
-				break;
-			default:
-				System.out.println("Opção inválida");
+			 
+				funcio();
 				break;
 			}
 		}
 	}
 
+	
+
 	// Método que escreve o menú
 	private static int menu(String[] itens) {
-		System.out.println("\t._______________________.");
+		
+ 
+		System.out.println("\n");
 		for (int i = 0; i < itens.length; i++) {
 			System.out.println("\t|" + (i + 1) + "." + itens[i] + "\t|");
 		}
@@ -110,7 +132,7 @@ public class Menu {
 
 	// Método que Lista todos os pets cadastrados
 	private static void listarPets() {
-		System.out.println("Id\tTipo\tNomePet\tNome dono\tPeso");
+		System.out.println("Id\tTipo\tNomePet\t Nome do dono\tPeso");
 		for (int i = 0; i < contPets; i++) {
 			System.out.println(pets[i].paraString());
 		}
@@ -155,5 +177,21 @@ public class Menu {
 				System.out.println(servicos[i].tabularString());
 		}
 	}
+public static void funcio() {
+	System.out.println("Funcionario"); 
+	System.out.println("1.Felipe");
+	System.out.println("2.Arnaldo");
+	System.out.println("3.João");
+	String fumcionario = entrada.next();
+	for (int i = 0; i < Preenchimento.length; i++) {
+		if ( Preenchimento[i] != null) {
+			System.out.println(Preenchimento[i].);
+
+			}
+}
 
 }
+}
+
+ 
+

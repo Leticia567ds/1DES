@@ -32,8 +32,8 @@ public class Servico {
 
 	// toString (Concatena todos os atributos em uma só String)
 	public String tabularString() {
-		return pet.paraString() + "\t" + nomeFuncionario + "\t" + descricao + "\t" + df.format(data)
-				+ "\t" + hf.format(hora);
+		return pet.paraString() + "  \t  " + nomeFuncionario + "  \t " + descricao + "  \t  " + df.format(data)
+				+ "  \t "  + hf.format(hora);
 	}
 
 }
