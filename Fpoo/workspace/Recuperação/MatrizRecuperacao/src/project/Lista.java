@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Lista {
 	public static Scanner scan = new Scanner(System.in);
 
-	public static void main(String[] args)throws IOException {
-		
+	public static void main(String[] args) throws IOException {
+
 		int menu = 0;
 		while (menu != 9) {
 			System.out.println(
@@ -39,15 +39,14 @@ public class Lista {
 				break;
 			case 8:
 				int num = 0;
-				
-				while(num != 5) {
-					
+
+				while (num != 5) {
+
 					System.out.println("(1) somar as duas matrizes.\r\n"
 							+ "(2) subtrair a primeira matriz da segunda.\r\n"
-							+ "(3) adicionar uma constante as duas matrizes.\r\n"
-							+ "(4) imprimir as matrizes.");
+							+ "(3) adicionar uma constante as duas matrizes.\r\n" + "(4) imprimir as matrizes.");
 					num = scan.nextInt();
-					switch(num) {
+					switch (num) {
 					case 1:
 						System.out.println("Digite 1 para confirmar");
 						int soma = scan.nextInt();
@@ -58,13 +57,19 @@ public class Lista {
 						int sub = scan.nextInt();
 						sub(sub);
 						break;
-					case 3: break;
-					case 4: break;
+					case 3:
+						break;
+					case 4:
+						break;
 					}
-					}
+				}
 				break;
 			case 9:
+				System.out.println("Bye");
 				break;
+				default:
+					System.out.println("Invalido");
+					break;
 			}
 		}
 	}
@@ -155,201 +160,204 @@ public class Lista {
 	}
 
 	public static void ex3() {
-		//Criando a matriz
-		 int[][]c = new int[3][3];
-		 for(int i = 0; i < c.length; i++) 
-			 for(int j = 0; j < c.length; j++) {
-				 System.out.println("Digite um número:");
-				 c[i][j] = scan.nextInt();
-				}
-		 
-		 //Elementos...
-		 System.out.println("--Elementos---");
-		 for (int i = 0; i < c.length; i++) {
+		// Criando a matriz
+		int[][] c = new int[3][3];
+		for (int i = 0; i < c.length; i++)
+			for (int j = 0; j < c.length; j++) {
+				System.out.println("Digite um número:");
+				c[i][j] = scan.nextInt();
+			}
+
+		// Elementos...
+		System.out.println("--Elementos---");
+		for (int i = 0; i < c.length; i++) {
 			for (int j = 0; j < c[0].length; j++) {
-				System.out.printf("%5d ",c[i][j]);
-				
+				System.out.printf("%5d ", c[i][j]);
+
 			}
 			System.out.println("");
 		}
-		 int linha = c.length;
-		 int coluna = c.length;
-		int transposta[][] = new int[linha][coluna]	;
+		int linha = c.length;
+		int coluna = c.length;
+		int transposta[][] = new int[linha][coluna];
 		for (int i = 0; i < transposta.length; i++) {
 			for (int j = 0; j < transposta.length; j++) {
 				transposta[i][j] = c[j][i];
 			}
 		}
-		//inverter.
+		// inverter.
 		System.out.println("  Elementos da traspostas ");
 		for (int i = 0; i < transposta.length; i++) {
 			for (int j = 0; j < transposta.length; j++) {
-				System.out.printf(" %5d",transposta[i][j]);
+				System.out.printf(" %5d", transposta[i][j]);
 			}
 			System.out.println("");
 		}
-			}
-	
-public static void ex4() {
-		
+	}
+
+	public static void ex4() {
+
 		Scanner scan = new Scanner(System.in);
-	     
-	    int[][]d = new int[3][3];
-	    int somaDiagonalAcima = 0;
 
-	    for(int i = 0; i < d.length; i++){ 
-	      for(int j = 0; j < d[0].length; j++){
-	        System.out.print("Informe: ");
-	        d[i][j] = scan.nextInt();       
-	      }       
-	    }
-	    System.out.println(" Elementos: ");
-	    for (int i = 0; i < d.length; i++) {
+		int[][] d = new int[3][3];
+		int somaDiagonalAcima = 0;
+
+		for (int i = 0; i < d.length; i++) {
+			for (int j = 0; j < d[0].length; j++) {
+				System.out.print("Informe: ");
+				d[i][j] = scan.nextInt();
+			}
+		}
+		System.out.println(" Elementos: ");
+		for (int i = 0; i < d.length; i++) {
 			for (int j = 0; j < d.length; j++) {
-				System.out.printf(" %5d",d[i][j]);
-				
-				}
+				System.out.printf(" %5d", d[i][j]);
+
+			}
 			System.out.println("");
-			}
-	     System.out.println();
-	 //Escrever os elemntos acima da diagonal principal.
-	     System.out.println("Elementos acima da diagonal principal");
-	     for (int i = 0; i < d.length; i++) {
-			for (int j = 0; j < d.length; j++) {
-				if(j> i) {
-					System.out.println("["+d[i][j]+"]");
-					 
-				} 
-				  
-			}
-			
-		}
-	     for (int i = 0; i < d.length; i++) {
-				for (int j = 0; j < d.length; j++) {
-					if(j>i) {
-						somaDiagonalAcima = somaDiagonalAcima + d[i][j];
-					}
-					
-					}
-				}
-	    System.out.println("A soma diagonal:"+somaDiagonalAcima) ;
-	  }
-public static void ex5() {
-	
-	Scanner scan = new Scanner(System.in);
-    
-    int[][]e = new int[3][3];
-    int somaDiagonalAcima = 0;
-
-    for(int i = 0; i < e.length; i++){ 
-      for(int j = 0; j < e[0].length; j++){
-        System.out.print("Informe: ");
-        e[i][j] = scan.nextInt();       
-      }       
-    }
-    System.out.println(" Elementos: ");
-    for (int i = 0; i < e.length; i++) {
-		for (int j = 0; j < e.length; j++) {
-			System.out.printf(" %5d",e[i][j]);
-			
-			}
-		System.out.println("");
-		}
-     System.out.println();
- //Escrever os elemntos acima da diagonal principal.
-     System.out.println("Elementos acima da diagonal principal");
-     for (int i = 0; i < e.length; i++) {
-		for (int j = 0; j < e.length; j++) {
-			if(j<i) {
-				System.out.println("["+e[i][j]+"]");
-				 
-			} 
-			  
-		}
-		
-	}
-     for (int i = 0; i < e.length; i++) {
-			for (int j = 0; j < e.length; j++) {
-				if(j<i) {
-					somaDiagonalAcima = somaDiagonalAcima + e[i][j];
-				}
-				
-				}
-			}
-    System.out.println("A soma diagonal:"+somaDiagonalAcima) ;
-  }
-public static void ex6() {
-	Random r = new Random();
-   
-    int[][]f = new int[5][5];
-    for(int i = 0; i < f.length; i++){ 
-      for(int j = 0; j < f[0].length; j++){
-    	  f[i][j] = r.nextInt(100);
-    	  if(j != i) {
-    		  
-    		  System.out.println(f[i][j]+" \t ");
-    	  }
-    	
-      }  
-  	   System.out.println();
-}
-}
-public static void ex8(int soma) {
-	float[][] mat1 = new float[2][2];
-	float[][] mat2 = new float[2][2];
-	
-	for (int i = 0; i < mat1.length; i++) {
-		for (int j = 0; j < mat1.length; j++) {
-			System.out.println("Digite o valor para Matriz-1");
-			mat1[i][j] = scan.nextFloat();
-			 
-		}
-	}
-	for (int i = 0; i < mat2.length; i++) {
-		for (int j = 0; j < mat2.length; j++) {
-			System.out.println("Digite o valor para Matriz-2");
-			mat1[i][j] = scan.nextFloat();
-	 
-		}
-	}
-      
-	float[][] soma1 = new float[mat1.length][mat1.length];
-	for (int i = 0; i < soma1.length; i++) {
-		for (int j = 0; j < soma1.length; j++) {
-			soma1[i][j] = mat1[i][j]+mat2[i][j];
-			System.out.println(soma1[i][j]+ " ");
 		}
 		System.out.println();
+		// Escrever os elemntos acima da diagonal principal.
+		System.out.println("Elementos acima da diagonal principal");
+		for (int i = 0; i < d.length; i++) {
+			for (int j = 0; j < d.length; j++) {
+				if (j > i) {
+					System.out.println("[" + d[i][j] + "]");
+
+				}
+
+			}
+
+		}
+		for (int i = 0; i < d.length; i++) {
+			for (int j = 0; j < d.length; j++) {
+				if (j > i) {
+					somaDiagonalAcima = somaDiagonalAcima + d[i][j];
+				}
+
+			}
+		}
+		System.out.println("A soma diagonal:" + somaDiagonalAcima);
 	}
-	 
- 
-}
-public static void sub(int sub) {
-float[][] mat1 = new float[2][2];
-float[][] mat2 = new float[2][2];
-	
-	for (int i = 0; i < mat1.length; i++) {
-		for (int j = 0; j < mat1.length; j++) {
-			System.out.println("Digite o valor para Matriz-1");
-			mat1[i][j] = scan.nextFloat();
-			 
+
+	public static void ex5() {
+
+		Scanner scan = new Scanner(System.in);
+
+		int[][] e = new int[3][3];
+		int somaDiagonalAcima = 0;
+
+		for (int i = 0; i < e.length; i++) {
+			for (int j = 0; j < e[0].length; j++) {
+				System.out.print("Informe: ");
+				e[i][j] = scan.nextInt();
+			}
+		}
+		System.out.println(" Elementos: ");
+		for (int i = 0; i < e.length; i++) {
+			for (int j = 0; j < e.length; j++) {
+				System.out.printf(" %5d", e[i][j]);
+
+			}
+			System.out.println("");
+		}
+		System.out.println();
+		// Escrever os elemntos acima da diagonal principal.
+		System.out.println("Elementos acima da diagonal principal");
+		for (int i = 0; i < e.length; i++) {
+			for (int j = 0; j < e.length; j++) {
+				if (j < i) {
+					System.out.println("[" + e[i][j] + "]");
+
+				}
+
+			}
+
+		}
+		for (int i = 0; i < e.length; i++) {
+			for (int j = 0; j < e.length; j++) {
+				if (j < i) {
+					somaDiagonalAcima = somaDiagonalAcima + e[i][j];
+				}
+
+			}
+		}
+		System.out.println("A soma diagonal:" + somaDiagonalAcima);
+	}
+
+	public static void ex6() {
+		Random r = new Random();
+
+		int[][] f = new int[5][5];
+		for (int i = 0; i < f.length; i++) {
+			for (int j = 0; j < f[0].length; j++) {
+				f[i][j] = r.nextInt(100);
+				if (j != i) {
+
+					System.out.println(f[i][j] + " \t ");
+				}
+
+			}
+			System.out.println();
 		}
 	}
-	for (int i = 0; i < mat2.length; i++) {
-		for (int j = 0; j < mat2.length; j++) {
-			System.out.println("Digite o valor para Matriz-2");
-			mat1[i][j] = scan.nextFloat();
-	 
+
+	public static void ex8(int soma) {
+		float[][] mat1 = new float[2][2];
+		float[][] mat2 = new float[2][2];
+
+		for (int i = 0; i < mat1.length; i++) {
+			for (int j = 0; j < mat1.length; j++) {
+				System.out.println("Digite o valor para Matriz-1");
+				mat1[i][j] = scan.nextFloat();
+
+			}
+		}
+		for (int i = 0; i < mat2.length; i++) {
+			for (int j = 0; j < mat2.length; j++) {
+				System.out.println("Digite o valor para Matriz-2");
+				mat1[i][j] = scan.nextFloat();
+
+			}
+		}
+
+		float[][] soma1 = new float[mat1.length][mat1.length];
+		for (int i = 0; i < soma1.length; i++) {
+			for (int j = 0; j < soma1.length; j++) {
+				soma1[i][j] = mat1[i][j] + mat2[i][j];
+				System.out.println(soma1[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+	}
+
+	public static void sub(int sub) {
+		float[][] mat1 = new float[2][2];
+		float[][] mat2 = new float[2][2];
+
+		for (int i = 0; i < mat1.length; i++) {
+			for (int j = 0; j < mat1.length; j++) {
+				System.out.println("Digite o valor para Matriz-1");
+				mat1[i][j] = scan.nextFloat();
+
+			}
+		}
+		for (int i = 0; i < mat2.length; i++) {
+			for (int j = 0; j < mat2.length; j++) {
+				System.out.println("Digite o valor para Matriz-2");
+				mat1[i][j] = scan.nextFloat();
+
+			}
+		}
+
+		float[][] sub1 = new float[mat1.length][mat2.length];
+		for (int i = 0; i < sub1.length; i++) {
+			for (int j = 0; j < sub1.length; j++) {
+				sub1[i][j] = mat1[i][j] - mat2[i][j];
+				System.out.println(sub1[i][j] + " ");
+			}
+
 		}
 	}
-      
-	float[][] sub1 = new float[mat1.length][mat2.length];
-	for (int i = 0; i < sub1.length; i++) {
-		for (int j = 0; j < sub1.length; j++) {
-			sub1[i][j] = mat1[i][j]-mat2[i][j];
-			System.out.println(sub1[i][j]+ " ");
-		}
-	
-}
-}
 }

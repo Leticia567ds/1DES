@@ -14,6 +14,14 @@ public class Animal {
 		this.raca = raca;
 	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	public String getEspecie() {
+		return this.especie;
+	}
+	
 	@Override
 	public String toString() {
 		return "\nespecie:" + especie + "\nnome:" + nome + "\npeso:" + peso + "\nraça:" + raca;
