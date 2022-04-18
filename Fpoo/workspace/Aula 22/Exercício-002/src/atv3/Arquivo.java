@@ -1,4 +1,4 @@
-package main;
+package atv3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,11 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-public class Arquivo2 {
+public class Arquivo {
 
 	public void Escrever(String info, String fileName, boolean append) {
 		try {
-			FileWriter fw = new FileWriter(fileName + ".csv", append);
+			FileWriter fw = new FileWriter(fileName + ".txt", append);
 			BufferedWriter bw = new BufferedWriter(fw);
 
 			bw.write(info + "\r\n");
@@ -22,15 +22,14 @@ public class Arquivo2 {
 		}
 
 	}
-
-	public ArrayList<String> ler(String fileName) {
-		ArrayList<String> data = new ArrayList<>();
+	public ArrayList<Integer> ler(String fileName) {
+		ArrayList<Integer> arquivo = new ArrayList<>();
 		try {
-			FileReader fr = new FileReader(fileName + ".csv");
+			FileReader fr = new FileReader(fileName + ".txt");
 			BufferedReader br = new BufferedReader(fr);
-			String linha = "";
+			String linha = ";";
 			while ((linha = br.readLine()) != null) {
-				data.add(linha);
+				arquivo.add(linha);
 			}
 
 			br.close();
@@ -39,7 +38,10 @@ public class Arquivo2 {
 			System.out.println(e.toString());
 		}
 
-		return data;
+		return arquivo;
 	}
 
 }
+
+
+
