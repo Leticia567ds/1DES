@@ -17,7 +17,7 @@ public class Telalogin extends JFrame {
 	 
 	Telalogin(){
 		setTitle("Tabela");
-		setBounds(600,450,600,200);
+		setBounds(600,400,350,200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Painel = new JPanel();
 		setContentPane(Painel);
@@ -28,13 +28,15 @@ public class Telalogin extends JFrame {
 		nome = new JTextField();
 		nome.setBounds(120,20,200,30);
 		rotulo2 = new JLabel("Nota:");
-		rotulo2.setBounds(20,60,100,20);
+		rotulo2.setBounds(20,60,58,30);
 		nota1 = new JTextField();
-		nota1.setBounds(300,60,200,35); 
+		nota1.setBounds(120,60,58,30); 
 		nota2 = new JTextField();
-		nota2.setBounds(200,60,200,35); 
+		nota2.setBounds(190,60,58,30); 
 		nota3 = new JTextField();
-		nota3.setBounds(100,60,200,35);
+		nota3.setBounds(260,60,58,30);
+		login = new JButton("Verificar média");
+		login.setBounds(120, 100, 200, 30);
 		
 		
 		Painel.add(rotulo1);
@@ -43,6 +45,7 @@ public class Telalogin extends JFrame {
 		Painel.add(nota1); 
 		Painel.add(nota2);
 		Painel.add(nota3);
+		Painel.add(login);
 	}
 	
 	

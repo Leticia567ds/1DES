@@ -1,17 +1,32 @@
- package controle;
+package controle;
 
 import java.util.ArrayList;
 
 import modelo.Usuario;
 
 public class ProcessUsuario {
-	private static ArrayList<Usuario> linhas = new ArrayList<Usuario>();
-	private static DAO dao = new DAO(); 
+
+	public static ArrayList<Usuario> usuarios = new ArrayList<>();
+	private static DAO ud = new DAO();
+
 	public static void carregar() {
-		linhas = dao.abrir();
+		usuarios = ud.abrir();
 	}
-	
-	public static void saida(String email, String senha) {
-		dao.validarConta(email, senha, linhas);
+
+	public static int checarEmail(String email) {
+		int retorno = -1;
+		for (int i = 0; i < usuarios.size(); i++) {
+			if (usuarios.get(i).getEmail().equals(email)) {
+				return i;
+			}
+		}
+		return retorno;
+	}
+
+	public static boolean checarSenha(int indice, String senha) {
+		if (usuarios.get(indice).getSenha().equals(senha)) {
+			return true;
+		}
+		return false;
 	}
 }

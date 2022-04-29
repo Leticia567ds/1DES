@@ -1,40 +1,44 @@
 package modelo;
 
-import java.util.ArrayList;
-
 public class Usuario {
 	
+	//Atributos
 	private String email;
 	private String senha;
-	
-	public Usuario(String linha) {
-		email = linha.split(";")[0];
-		senha = linha.split(";")[1];
-	}
-	
-	public boolean validaEmail(String email, ArrayList<Usuario> contas) {
-		boolean achou = false;
-		for (Usuario usuario : contas) {
-			if (this.email.equals(usuario.email)) {
-				achou = true;
-				break;
-			}
-		}
-		
-		return achou;
-	}
-	
-	public boolean validaSenha(String email, String senha, ArrayList<Usuario> contas) {
-		boolean validou = false;
-		
-		for (Usuario usuario : contas) {
-			if (this.email.equals(usuario.email) && this.senha.equals(usuario.senha)) {
-				validou = true;
-				break;
-			}
-		}
-		
-		return validou;
+
+	//Construtores
+	public Usuario(String email, String senha) {
+		super();
+		this.email = email;
+		this.senha = senha;
 	}
 
+	public Usuario(String linha) {
+		super();
+		this.email = linha.split(";")[0];
+		this.senha = linha.split(";")[1];
+	}
+
+	//Métodos de acesso (Getters && Setters)
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	//Saídas
+	@Override
+	public String toString() {
+		return email + "\t********";
+	}
 }
