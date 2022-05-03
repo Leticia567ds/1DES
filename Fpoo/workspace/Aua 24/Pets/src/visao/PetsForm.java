@@ -1,18 +1,26 @@
 package visao;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import controle.PetProcess;
+import modelo.Pet;
  
 
-public class PetsForm extends JFrame {
+public class PetsForm extends JFrame implements ActionListener{  
 
 	private static final long serialVersionUID = 1L;
 	
@@ -22,15 +30,24 @@ public class PetsForm extends JFrame {
 	private JTextField tfid,tfnome, tfraca, tfpeso, tfnas, tfnomeDono, tftelefone;
 	private JComboBox<String> Especie;
 	private JTextArea Tela;
+	private String[] imagens =  {  "C:\\Users\\des\\Desktop\\1DES\\Fpoo\\workspace\\Aua 24\\Pets\\Imagem\\cat.jpg",
+			"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\workspace\\Aua 24\\Pets\\Imagem\\22.jpg", 
+			"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\workspace\\Aua 24\\Pets\\Imagem\\Pássaros.jpg",
+			"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\workspace\\Aua 24\\Pets\\Imagem\\coelho.jpg",
+			"Outros"
+	};
+	private ImageIcon icon;
 	private JButton create, read, update, delete;
+	private String texto = "";
 	
 	
-	PetsForm() {
+	PetsForm() throws ParseException {
 		setTitle("Formulário de Pets");
 		setBounds(200, 300, 500, 500);
 		painel = new JPanel();
 		painel.setBackground(new Color(255, 190 , 203 ));
 		setContentPane(painel);
+		 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(null);
 		
@@ -66,12 +83,13 @@ public class PetsForm extends JFrame {
 		telefone.setBounds(20,230, 120, 30);
 		painel.add(telefone);
 		
-		rotulos = new JLabel("Id:     Espécie:       Pet:        Peso:       Idade:       Dono:        Telefone:");
+		rotulos = new JLabel("Id:     Espécie:       Pet:      Raça:      Peso:       Idade:       Dono:        Telefone:");
 		rotulos.setBounds(20, 270, 400, 30);
 		painel.add(rotulos);
 		
-		tfid = new JTextField();
-		tfid.setEnabled(false);
+		tfid = new JTextField("id");
+		tfid.setEnabled(true);
+		tfid.setBackground(new Color(210, 210 , 210));
 		tfid.setBounds(100, 20, 120, 30);
 	    painel.add(tfid);
 	    
@@ -104,15 +122,20 @@ public class PetsForm extends JFrame {
 	    painel.add(tftelefone);
 	    
 	    Tela = new JTextArea();
-		Tela.setEnabled(false);
+		Tela.setEnabled(true);
 		Tela.setBounds(20,300, 400, 150);
 		Tela.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red));
+		preencherAreaDeTexto();
 		painel.add(Tela);
+		 
 		
-		imagem = new JLabel("              Imagem aqui    ");
+		
+		imagem = new JLabel();
 		imagem.setBounds(250,150,215,120);
-		imagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red));
+		alternarImagens(0);
 		painel.add(imagem);
+		
+		imagem.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red));
 		
 		create = new JButton("Cadastrar");
 		read = new JButton("Buscar");
@@ -128,11 +151,41 @@ public class PetsForm extends JFrame {
 		painel.add(read);
 		painel.add(update);
 		painel.add(delete);
+		
+		Especie.addActionListener(this);
+		
 	}
 	
-	public static void main(String[] args) {
-		new PetsForm().setVisible(true);
+	private void alternarImagens(int indice) {
+		icon = new ImageIcon(new ImageIcon(imagens[indice]).getImage().getScaledInstance(212,180, 100));
+		imagem.setIcon(icon);
+	}
+	
+	 
+	//CREATE - CRUD
+	private void cadastrar() {
+		if(tfnome.getText().length() != 0) {
+			
+		}
+	}
+	
+	private void preencherAreaDeTexto() {
+		for (Pet p : PetProcess.pets) {
+			texto += p.toString();
+		}
+		Tela.setText(texto);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == Especie) {
+			alternarImagens(Especie.getSelectedIndex());
+		}
+	}
 
+	public static void main(String[] agrs) throws ParseException {
+		PetProcess.carregarTestes();
+		new PetsForm().setVisible(true);
 	}
 
 }
