@@ -32,7 +32,8 @@ public class Pet {
 		this.sdf = sdf;
 	}
 
-   public int obterIdade() {
+
+public int obterIdade() {
 	   return new Date().getYear()- nas.getYear();
    }
    

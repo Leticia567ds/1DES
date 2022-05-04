@@ -38,6 +38,7 @@ public class PetsForm extends JFrame implements ActionListener{
 	};
 	private ImageIcon icon;
 	private JButton create, read, update, delete;
+	private int autoId = PetProcess.pets.size() + 1;
 	private String texto = "";
 	
 	
@@ -87,7 +88,7 @@ public class PetsForm extends JFrame implements ActionListener{
 		rotulos.setBounds(20, 270, 400, 30);
 		painel.add(rotulos);
 		
-		tfid = new JTextField("id");
+		tfid = new JTextField(String.format("%d", autoId));
 		tfid.setEnabled(true);
 		tfid.setBackground(new Color(210, 210 , 210));
 		tfid.setBounds(100, 20, 120, 30);
@@ -152,7 +153,13 @@ public class PetsForm extends JFrame implements ActionListener{
 		painel.add(update);
 		painel.add(delete);
 		
+		
 		Especie.addActionListener(this);
+		create.addActionListener(this);
+		read.addActionListener(this);
+		update.addActionListener(this);
+		delete.addActionListener(this);
+		
 		
 	}
 	
@@ -163,13 +170,31 @@ public class PetsForm extends JFrame implements ActionListener{
 	
 	 
 	//CREATE - CRUD
-	private void cadastrar() {
-		if(tfnome.getText().length() != 0) {
-			
+	private void cadastrar() throws NumberFormatException, ParseException {
+		if (tfnome.getText().length() != 0 && tfraca.getText().length() != 0 && tfpeso.getText().length() != 0
+				&& tfnas.getText().length() != 0 && tfnomeDono.getText().length() != 0
+				&& tftelefone.getText().length() != 0) {	
+			PetProcess.pets
+					.add(new Pet(autoId, Especie.getSelectedItem().toString(), tfnome.getText(), tfraca.getText(), Float.parseFloat(tfpeso.getText()),tfnas.getText(), tfnomeDono.getText(), tftelefone.getText()));
+		autoId++;
+			preencherAreaDeTexto();
+			limparCampos();
+		} else {
+			JOptionPane.showMessageDialog(this, "Favor preencher todos os campos.");
 		}
 	}
 	
+	private void limparCampos(){
+		tfnome.setText(null);
+		tfraca.setText(null);
+		tfpeso.setText(null);
+		tfnas.setText(null);
+		tfnomeDono.setText(null);
+		tftelefone.setText(null);
+	}
+	
 	private void preencherAreaDeTexto() {
+		texto = ""; 
 		for (Pet p : PetProcess.pets) {
 			texto += p.toString();
 		}
@@ -180,6 +205,22 @@ public class PetsForm extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Especie) {
 			alternarImagens(Especie.getSelectedIndex());
+		}
+		if (e.getSource() == create) {
+			try {
+				cadastrar();
+			} catch (NumberFormatException | ParseException e1) {
+				System.out.println("");
+			}
+		}
+		if (e.getSource() == read) {
+
+		}
+		if (e.getSource() == update) {
+
+		}
+		if (e.getSource() == delete) {
+
 		}
 	}
 
