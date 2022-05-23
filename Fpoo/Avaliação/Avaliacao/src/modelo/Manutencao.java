@@ -8,20 +8,16 @@ import java.util.Objects;
 public class Manutencao {
 
 	private int id;
-	private java.util.Date data;
+	private String data;
 	private String equipamento;
 	private Double custoHora;
 	private Double tempGasto;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-	public Manutencao(int id, String data, String equipamento, Double custoHora, Double tempGasto) {
+	public Manutencao(int id, String data, String equipamento, double custoHora, double tempGasto) {
 		this.id = id;
-		try {
-			this.data = (Date) sdf.parse(data);
-		}catch(ParseException e) {
-			System.out.println(e);
-		}
+		this.data = data;
 		this.equipamento = equipamento;
 		this.custoHora = custoHora;
 		this.tempGasto = tempGasto;
@@ -29,14 +25,10 @@ public class Manutencao {
 	
 	public Manutencao(String linha) {
 		this.id = Integer.parseInt(linha.split(";")[0]);
-	try {
-		this.data = sdf.parse(linha.split(";")[1]);
-	}catch(ParseException e) {
-		System.out.println(e);
-	}
-
-	this.equipamento = linha.split(";")[2];
-	this.custoHora = Double.parseDouble(linha.split(";")[3]);
+		this.data = linha.split(";")[1];
+		this.equipamento = linha.split(";")[2];
+		this.custoHora = Double.parseDouble(linha.split(";")[3]);
+		this.tempGasto = Double.parseDouble(linha.split(";")[4]);
 	}
 
 	public int getId() {
@@ -48,14 +40,14 @@ public class Manutencao {
 	}
 
 
-	public java.util.Date getData() {
+	public String getData() {
 		return data;
 	}
 	public String getData(String s) {
 		return sdf.format(data);
 	}
 
-	public void setData(java.util.Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
@@ -105,8 +97,8 @@ public class Manutencao {
 
 	@Override
 	public String toString() {
-		return  id + ";" + data + ";" + equipamento + ";" + custoHora
-				+ ";" + tempGasto + getTotal();
+		return  id + "\t" + data + "\t" + equipamento + "\t" + custoHora
+				+ "\t" + tempGasto + "\t" + getTotal();
 	}
 
 	public String toCSV() {
