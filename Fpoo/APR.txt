@@ -1,0 +1,13 @@
+Tamanho : lan(local)que serve para locais menores , wan( grande) é uma rede de longa distância .
+conexão, guiada(com cabo), não guiada(sem).
+Deixa de ser lan e vira wan??
+Wan: partiu para inernet é wan, 156 computaores é wan
+UDP : mais rápido
+TCP : seguro
+
+Filtrar tentar em casa: 
+token: auxiliar
+Tem colisão?
+Conversão
+ip não pode passar d 0 á 254..
+swing
