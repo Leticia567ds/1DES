@@ -8,20 +8,20 @@ import modelo.Funcionario;
 public class Process {
 
 	
-	public static ArrayList<Funcionario> fun = new ArrayList<>();
+	public static ArrayList<Funcionario> funi = new ArrayList<>();
 	private static DAO d = new DAO();
 	
 	public static void abrir() {
-		fun  = d.ler();
+		funi  = d.ler();
 	}
 	
 	public static void salvar() {
-		d.escrever(fun);
+		d.escrever(funi);
 	}
 	
 	public static void carregar() {
 		// Limpar a lista
-		fun = new ArrayList<>();
+		funi = new ArrayList<>();
 		// Preencher com testes
 		 
 	}

@@ -12,6 +12,7 @@ private String categoria;
 private int qtc;
 private double vlr;
 
+
 public Funcionario(int id, String nome, String funcao, String categoria, int qtc, double vlr) {
 	super();
 	this.id = id;
@@ -82,6 +83,7 @@ public void setVlr(double vlr) {
 public int hashCode() {
 	return Objects.hash(id);
 }
+
 @Override
 public boolean equals(Object obj) {
 	if (this == obj)
@@ -96,8 +98,7 @@ public boolean equals(Object obj) {
 
 @Override
 public String toString() {
-	return "Funcionario [id=" + id + ", nome=" + nome + ", funcao=" + funcao + ", categoria=" + categoria + ", qtc="
-			+ qtc + ", vlr=" + vlr + "]";
+	return id + nome + funcao + categoria + qtc + vlr;
 }
 
 public String toCSV() {
