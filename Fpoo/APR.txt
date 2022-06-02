@@ -11,3 +11,25 @@ Tem colisão?
 Conversão
 ip não pode passar d 0 á 254..
 swing
+FTP:A porta 21 é usada para conexão de controlo e a porta 20 é usada na conexão de dados, usa TCP.
+
+Fibra Òtica longa distância.
+MSTSC
+
+CLASSE -->:)
+
+C:192.168.0.1 e 192.168.0.255
+255.255.255.0
+
+B: 172.16.0.1  172.16.255.255
+255.255.0.0
+
+A:(SENAI) 10.0.0.1   10.255.255.255
+255.0.0.0
+
+Dividir = 2,4,8,16,32,64(até aqui no max) até 128 as redes.
+Lan: Par trançado
+Fibra óptica é wan
+
+256 /2 = dá duas redes.
+binario:
