@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.Objects;
+import java.util.Locale;
 
 public class Funcionario {
 	
@@ -12,6 +13,7 @@ private String categoria;
 private int qtc;
 private double vlr;
 
+private final Locale BRASIL = new Locale("pt", "BR");
 
 public Funcionario(int id, String nome, String funcao, String categoria, int qtc, double vlr) {
 	super();
@@ -35,6 +37,10 @@ public Funcionario(String linha) {
 
 public int getId() {
 	return id;
+}
+
+public String getId(String s) {
+	return String.format("%d",id);
 }
 
 public void setId(int id) {
@@ -68,6 +74,10 @@ public void setCategoria(String categoria) {
 public int getQtc() {
 	return qtc;
 }
+public String getQtc(String s) {
+	return String.format("%d", qtc);
+}
+
 
 public void setQtc(int qtc) {
 	this.qtc = qtc;
@@ -75,6 +85,10 @@ public void setQtc(int qtc) {
 
 public double getVlr() {
 	return vlr;
+}
+
+public String getVlr(String s) {
+	return String.format("%.0f", vlr);
 }
 
 public void setVlr(double vlr) {
@@ -98,7 +112,7 @@ public boolean equals(Object obj) {
 
 @Override
 public String toString() {
-	return id + nome + funcao + categoria + qtc + vlr;
+	return id + " \t " + nome + " \t " + funcao + " \t " + categoria + " \t " + qtc + " \t " + vlr;
 }
 
 public String toCSV() {

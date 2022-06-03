@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -38,6 +39,8 @@ public class Tela extends JFrame  implements ActionListener{
 	private int autoId = Process.funi.size() + 1;
 	private String texto = "";
 	
+	private final Locale BRASIL = new Locale("pt", "BR");
+	
 	Tela(){
 	setTitle("Prancheta do dia");
 	setBounds(650,150, 750, 650);
@@ -51,9 +54,7 @@ public class Tela extends JFrame  implements ActionListener{
 	id = new JLabel("Id");
 	id.setBounds(25, 20, 120, 30);
 	painel.add(id);
-	nome = new JLabel("Nome");
-	nome.setBounds(25, 55,120, 30);
-	painel.add(nome);
+
 	funcao = new JLabel("Funçao do funcionario");
 	funcao.setBounds(25,100,125,30);
 	painel.add(funcao);
@@ -126,6 +127,7 @@ public class Tela extends JFrame  implements ActionListener{
 	buscar.addActionListener(this);
 	alterar.addActionListener(this);
 	deletar.addActionListener(this);
+	tfnome.addActionListener(this);
 	
 	painel.add(cadastrar);
 	painel.add(deletar);
@@ -140,8 +142,11 @@ public class Tela extends JFrame  implements ActionListener{
 	}
 	private void cadastrar()throws NumberFormatException, ParseException{
 		if(tfct.getText().length() !=0 && tfqtc.getText().length() != 0 && tfvlr.getText().length() != 0) {
-			Process.funi.add(new Funcionario(autoId,tfnome.getSelectedItem().toString(),tffuncao.getSelectedText().toString(),tfct.getText().toString(),Integer.parseInt(tfqtc.getText().toString(),Double.parseDouble(tfvlr.getText().toString()))));
+			Process.funi.add(new Funcionario(autoId,tfnome.getSelectedItem().toString().toString(),cbfuncao.getSelectedItem().toString(),ct.getText().toString(),Integer.parseInt(tfqtc.getText().toString()),Double.parseDouble(tfvlr.getText().toString())));
 			  autoId++;
+			  limparCampos();
+				preencherAreaDeTexto();
+				Process.salvar();
 			  
 		} else {
 			JOptionPane.showMessageDialog(this, "Favor Preencher todos as informações");
@@ -149,8 +154,104 @@ public class Tela extends JFrame  implements ActionListener{
 		
 	}
 	
+	private void deletar() {
+		int id = Integer.parseInt(tfid.getText());
+		int indice = -1;
+		for (Funcionario manu : Process.funi) {
+			if (manu.getId() == id) {
+				indice = Process.funi.indexOf(manu);
+			}
+		}
+		 Process.funi.remove(indice);
+			preencherAreaDeTexto();
+			limparCampos();
+			cadastrar.setEnabled(true);
+			alterar.setEnabled(false);
+			deletar.setEnabled(false);
+			Process.salvar();
+			tfid.setText(String.format("%d", Process.funi.size() + 1));
+	}
 	
+	private void alterar() {
+		
+		int id = Integer.parseInt(tfid.getText());
+		int indice = -1;
+		
+		for(Funcionario f: Process.funi) {
+			if(f.getId() == id) {
+				indice = Process.funi.indexOf(f);
+			}
+		}
+		
+		if(tfct.getText().length() !=0 && tfqtc.getText().length() != 0 && tfvlr.getText().length() != 0) {
+			Process.funi.set(indice,  new Funcionario(autoId, tfnome.getSelectedItem().toString(),
+					 cbfuncao.getSelectedItem().toString(),
+					tfct.getSelectedText().toString(), 
+					Integer.parseInt(tfqtc.getText().toString()),
+					Double.parseDouble(tfvlr.getSelectedText().toString())));
+			preencherAreaDeTexto();
+			limparCampos();
+		}else {
+			JOptionPane.showMessageDialog(this, "Favor preencher todos os campos.");
+		}
+		cadastrar.setEnabled(true);
+		alterar.setEnabled(false);
+		deletar.setEnabled(false);
+		tfid.setText(String.format("%d", Process.funi.size() + 1));
+		Process.salvar();
+	}
 	
+	private void buscar() {
+		String entrada = JOptionPane.showInputDialog( this,"Digite o id do funcionario");
+	
+		boolean isNumeric = true;
+		if (entrada != null) {
+			for (int i = 0; i < entrada.length(); i++) {
+				if (!Character.isDigit(entrada.charAt(i))) {
+					isNumeric = false;
+				}
+			}
+		}else {
+			isNumeric = false;
+		}
+		if (isNumeric) {
+int       id = Integer.parseInt(entrada);
+			boolean achou = false;
+			
+			for (Funcionario v : Process.funi) {
+				if (v.getId() == id) {
+					achou = true;
+					int indice = Process.funi.indexOf(v);
+					tfid.setText(Process.funi.get(indice).getId("s"));
+					tfnome.setSelectedIndex(obterIndiceFuncionario(Process.funi.get(indice).getNome()));
+					cbfuncao.setSelectedIndex(obterIndicefuncao(Process.funi.get(indice).getFuncao()));
+					tfct.setText(Process.funi.get(indice).getCategoria());
+					tfqtc.setText(Process.funi.get(indice).getQtc("s"));
+					tfvlr.setText(Process.funi.get(indice).getVlr("s"));
+					
+					Process.salvar();
+					cadastrar.setEnabled(false);
+					alterar.setEnabled(true);
+					deletar.setEnabled(true);
+					break;
+					}
+				}
+	}
+		
+	}
+	private void  limparCampos() {
+		tfct.setText(null);
+		tfqtc.setText(null);
+		tfvlr.setText(null);
+		
+	}
+	private void preencherAreaDeTexto() {
+		texto = "";
+		for (Funcionario f :Process.funi) {
+			texto += f.toString()+"\n";
+		}
+		verResultados.setText(texto);
+	}
 	
 	int obterIndiceFuncionario(String Funcionario) {
 		switch (Funcionario) {
@@ -164,8 +265,23 @@ public class Tela extends JFrame  implements ActionListener{
 			return -1;
 		}
 	}
+		int obterIndicefuncao(String Fun) {
+			switch (Fun) {
+			case "Cabeleleira":
+			return 0;
+			case "Design sobrancelha":
+				return 1;
+			case "Unhas":
+				return 2;
+				
+			default:
+				return -1;
+			}
+			
+	}
 	public static void main(String[] args) {
 	new Tela().setVisible(true);
+	Process.carregar();
 
 	}
 
@@ -174,6 +290,21 @@ public class Tela extends JFrame  implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == tfnome) {
 			alterarImagens(tfnome.getSelectedIndex());
+		}if(e.getSource() == cadastrar){
+			try {
+				cadastrar();
+			} catch (NumberFormatException | ParseException e1) {
+				e1.printStackTrace();
+			}
+		}
+		if (e.getSource() == buscar) {
+			buscar();
+		}
+		if (e.getSource() == alterar) {
+			alterar();
+		}
+		if (e.getSource() == deletar) {
+			deletar();
 		}
 		
 	}
