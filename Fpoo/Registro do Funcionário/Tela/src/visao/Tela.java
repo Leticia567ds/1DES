@@ -118,6 +118,7 @@ public class Tela extends JFrame  implements ActionListener{
 	verResultados = new JTextArea();
 	verResultados.setEditable(false);
 	verResultados.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.red));
+	preencherAreaDeTexto();
 	
 	rolagem = new JScrollPane(verResultados);
 	rolagem.setBounds(35,350,600,200);
