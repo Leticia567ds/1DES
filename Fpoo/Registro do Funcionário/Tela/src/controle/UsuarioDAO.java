@@ -15,7 +15,7 @@ import modelo.Usuario;
 	public class UsuarioDAO {
 		private BufferedReader br;
 		private BufferedWriter bw;
-		private String path = "C:\\Users\\Usuario 10\\Desktop\\1DES\\Fpoo\\JF\\Tela\\Arquivos\\senha.csv";
+		private String path = "C:\\Users\\des\\Desktop\\1DES\\Fpoo\\Registro do Funcionário\\Tela\\Arquivos\\senha.csv";
 
 		public ArrayList<Usuario> ler() {
 			ArrayList<Usuario> linhas = new ArrayList<>();

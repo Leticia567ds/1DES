@@ -35,9 +35,9 @@ public class Tela extends JFrame  implements ActionListener{
 	private JScrollPane rolagem;
 	private JButton cadastrar, buscar,filtrar, deletar, alterar;
 	private String imgIco = "./Funcionario/icone.png";
-	private String[] imagens = {"C:\\Users\\Usuario 10\\Desktop\\1DES\\Fpoo\\JF\\Tela\\Imagem\\Katia.png",
-			"C:\\Users\\Usuario 10\\Desktop\\1DES\\Fpoo\\JF\\Tela\\Imagem\\Maria.png"
-			,"C:\\Users\\Usuario 10\\Desktop\\1DES\\Fpoo\\JF\\Tela\\Imagem\\Silva.png" };
+	private String[] imagens = {"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\Registro do Funcionário\\Tela\\Imagem\\Katia.png",
+			"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\Registro do Funcionário\\Tela\\Imagem\\Maria.png"
+			,"C:\\Users\\des\\Desktop\\1DES\\Fpoo\\Registro do Funcionário\\Tela\\Imagem\\Silva.png" };
 	private ImageIcon icon;
 	private int autoId = Process.funi.size() + 1;
 	private String texto = "";
@@ -46,7 +46,7 @@ public class Tela extends JFrame  implements ActionListener{
 	
 	Tela(){
 	setTitle("Registro do Funcionário");
-	setBounds(650,150, 750, 650);
+	setBounds(400, 300, 750, 640);
 	painel = new JPanel();
 	setIconImage(new ImageIcon(imgIco).getImage());
 	painel.setBackground(new Color(255,235,245));
@@ -94,7 +94,7 @@ public class Tela extends JFrame  implements ActionListener{
 	tfoq.setBounds(115,120,125,25);
 	painel.add(tfoq);
 	
-	tfdata = new JTextField("Dia de hoje");
+	tfdata = new JTextField("07/06/2022");
 	tfdata.setEditable(false);
 	tfdata.setBounds(110,170,125,25);
 	painel.add(tfdata);
