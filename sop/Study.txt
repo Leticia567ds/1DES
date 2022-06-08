@@ -1,0 +1,4 @@
+Grafico dinamico.
+Comissão e SE().
+Salário Bruto.
+Porcentagem.
