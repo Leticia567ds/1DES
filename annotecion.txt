@@ -1,0 +1,17 @@
+*ESTUDAR FRONT-END!!!*
+Vw ---> width;
+Vh ---> height;
+ row-reverse   <----
+ row -->
+column
+1
+2
+3
+4
+column-reverse:
+4
+3
+2
+1
+MySQL --> linguagem de banco de dados
+#44babc;
