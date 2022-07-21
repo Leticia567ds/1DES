@@ -1,0 +1,10 @@
+
+guardar variavel:
+Const: constante--> valor não altera
+var:global
+let:local, dentro de uma função especifica .
+let e int-->javascript não tem int
+arr.forEach(((val, Indice) => arr.forEach(((val, Indice) => { console.log(val, indice) });
+() => { console.log(val, indice) });f.e.u.n
+
+
